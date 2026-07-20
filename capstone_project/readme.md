@@ -167,7 +167,7 @@ Are in the screenshots folder.
 
 The following machine learning models were evaluated:
 
-| Model | Accuracy |
+| Model  Accuracy |
 |--------|----------|
 Random Forest  0.969231
 Logistic Regression  0.923077
