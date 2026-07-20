@@ -167,11 +167,12 @@ Are in the screenshots folder.
 
 The following machine learning models were evaluated:
 
-| Model  Accuracy |
-|--------|----------|
-Random Forest  0.969231
-Logistic Regression  0.923077
- KNN                 0.892308
+| **Rank** | **Model**                 | **Accuracy** |
+| :------: | ------------------------- | :----------: |
+|     1    | Random Forest             |  **96.92%**  |
+|     2    | Logistic Regression       |  **92.31%**  |
+|     3    | K-Nearest Neighbors (KNN) |  **89.23%**  |
+
 
 For deployment, Random Forest can be used to predict job categories.
 
