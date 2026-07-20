@@ -1,0 +1,679 @@
+/* ===============================
+   Google Font
+=================================*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Poppins',sans-serif;
+}
+
+/* ===============================
+   Body
+=================================*/
+
+body{
+
+    background:#f5f7fb;
+
+    color:#222;
+
+    transition:.4s;
+
+}
+
+/* ===============================
+   Dark Mode
+=================================*/
+
+body.dark-mode{
+
+    background:#121212;
+
+    color:white;
+
+}
+
+body.dark-mode .glass-card,
+body.dark-mode .feature-card,
+body.dark-mode .job-card,
+body.dark-mode .skill-card,
+body.dark-mode .info-card,
+body.dark-mode .result-card{
+
+    background:#1f1f1f;
+
+    color:white;
+
+}
+
+body.dark-mode .footer{
+
+    background:#181818;
+
+}
+
+body.dark-mode textarea{
+
+    background:#222;
+
+    color:white;
+
+}
+
+/* ===============================
+   Navbar
+=================================*/
+
+.navbar{
+
+    padding:15px;
+
+}
+
+.navbar-brand{
+
+    font-size:24px;
+
+    font-weight:700;
+
+}
+
+/* ===============================
+   Hero Section
+=================================*/
+
+.hero{
+
+    padding:80px 0;
+
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+
+    color:white;
+
+}
+
+.hero h1{
+
+    font-weight:700;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+}
+
+.hero-icon{
+
+    font-size:180px;
+
+    color:white;
+
+    animation:float 3s ease-in-out infinite;
+
+}
+
+@keyframes float{
+
+0%{
+
+transform:translateY(0px);
+
+}
+
+50%{
+
+transform:translateY(-15px);
+
+}
+
+100%{
+
+transform:translateY(0px);
+
+}
+
+}
+
+/* ===============================
+   Glass Card
+=================================*/
+
+.glass-card{
+
+    background:white;
+
+    border-radius:20px;
+
+    padding:35px;
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+}
+
+/* ===============================
+   Textarea
+=================================*/
+
+textarea{
+
+    resize:none;
+
+    border-radius:15px !important;
+
+    padding:15px !important;
+
+    font-size:16px !important;
+
+}
+
+/* ===============================
+   Buttons
+=================================*/
+
+.btn{
+
+    border-radius:12px;
+
+    transition:.3s;
+
+    font-weight:600;
+
+}
+
+.btn:hover{
+
+    transform:translateY(-3px);
+
+}
+
+/* ===============================
+   Feature Cards
+=================================*/
+
+.feature-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:18px;
+
+    text-align:center;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.10);
+
+    transition:.4s;
+
+    height:100%;
+
+}
+
+.feature-card:hover{
+
+    transform:translateY(-8px);
+
+}
+
+/* ===============================
+   Result Card
+=================================*/
+
+.result-card{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+    margin-bottom:20px;
+
+}
+
+/* ===============================
+   Job Cards
+=================================*/
+
+.job-card{
+
+    background:white;
+
+    padding:30px;
+
+    border-radius:20px;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.12);
+
+    text-align:center;
+
+    transition:.3s;
+
+    height:100%;
+
+}
+
+.job-card:hover{
+
+    transform:translateY(-8px);
+
+    cursor:pointer;
+
+}
+
+/* ===============================
+   Skill Cards
+=================================*/
+
+.skill-card{
+
+    background:#0d6efd;
+
+    color:white;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    text-align:center;
+
+    font-weight:600;
+
+    transition:.3s;
+
+}
+
+.skill-card:hover{
+
+    transform:scale(1.05);
+
+}
+
+/* ===============================
+   Information Cards
+=================================*/
+
+.info-card{
+
+    background:white;
+
+    padding:20px;
+
+    border-radius:15px;
+
+    text-align:center;
+
+    box-shadow:0 6px 15px rgba(0,0,0,.12);
+
+    transition:.3s;
+
+}
+
+.info-card:hover{
+
+    transform:translateY(-6px);
+
+}
+
+/* ===============================
+   Progress Bar
+=================================*/
+
+.progress{
+
+    height:28px;
+
+    border-radius:20px;
+
+}
+
+.progress-bar{
+
+    font-weight:bold;
+
+    font-size:15px;
+
+}
+
+/* ===============================
+   Statistics Section
+=================================*/
+
+.stats-section{
+
+    background:linear-gradient(135deg,#4facfe,#00f2fe);
+
+    color:white;
+
+    padding:60px 0;
+
+    margin-top:60px;
+
+}
+
+.stats-section h2{
+
+    font-size:42px;
+
+    font-weight:700;
+
+}
+
+.stats-section p{
+
+    font-size:18px;
+
+}
+
+/* ===============================
+   Loading Spinner
+=================================*/
+
+.loading-overlay{
+
+    position:fixed;
+
+    top:0;
+
+    left:0;
+
+    width:100%;
+
+    height:100%;
+
+    background:rgba(0,0,0,.75);
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    flex-direction:column;
+
+    z-index:9999;
+
+}
+
+/* ===============================
+   Footer
+=================================*/
+
+.footer{
+
+    background:#0f172a;
+
+    color:white;
+
+    padding:50px 0 20px;
+
+}
+
+.footer h4,
+.footer h5{
+
+    font-weight:600;
+
+    margin-bottom:15px;
+
+}
+
+.footer ul{
+
+    list-style:none;
+
+    padding:0;
+
+}
+
+.footer ul li{
+
+    margin-bottom:10px;
+
+}
+
+.footer hr{
+
+    border-color:rgba(255,255,255,.2);
+
+}
+
+.footer p{
+
+    margin:0;
+
+}
+
+/* ===============================
+   Badges
+=================================*/
+
+.badge{
+
+    margin-right:8px;
+
+    padding:10px 15px;
+
+    font-size:14px;
+
+    border-radius:30px;
+
+}
+
+/* ===============================
+   Alerts
+=================================*/
+
+.alert{
+
+    border-radius:12px;
+
+}
+
+/* ===============================
+   Cards Animation
+=================================*/
+
+.glass-card,
+.feature-card,
+.result-card,
+.job-card,
+.skill-card,
+.info-card{
+
+    animation:fadeIn .8s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(20px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===============================
+   Custom Scrollbar
+=================================*/
+
+::-webkit-scrollbar{
+
+    width:10px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:#f1f1f1;
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:#0d6efd;
+
+    border-radius:20px;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:#084298;
+
+}
+
+/* ===============================
+   Dark Mode Scrollbar
+=================================*/
+
+body.dark-mode::-webkit-scrollbar-track{
+
+    background:#222;
+
+}
+
+body.dark-mode::-webkit-scrollbar-thumb{
+
+    background:#4facfe;
+
+}
+
+/* ===============================
+   Responsive Design
+=================================*/
+
+@media(max-width:992px){
+
+.hero{
+
+padding:60px 20px;
+
+text-align:center;
+
+}
+
+.hero-icon{
+
+font-size:120px;
+
+margin-top:30px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.glass-card{
+
+padding:20px;
+
+}
+
+.job-card{
+
+margin-bottom:20px;
+
+}
+
+.feature-card{
+
+margin-bottom:20px;
+
+}
+
+.stats-section h2{
+
+font-size:30px;
+
+}
+
+.navbar-brand{
+
+font-size:20px;
+
+}
+
+.btn{
+
+margin-bottom:10px;
+
+}
+
+}
+
+@media(max-width:576px){
+
+.hero h1{
+
+font-size:32px;
+
+}
+
+.hero p{
+
+font-size:16px;
+
+}
+
+textarea{
+
+font-size:14px !important;
+
+}
+
+.progress{
+
+height:22px;
+
+}
+
+}
+
+/* ===============================
+   Utility Classes
+=================================*/
+
+.text-shadow{
+
+    text-shadow:2px 2px 5px rgba(0,0,0,.2);
+
+}
+
+.shadow-hover:hover{
+
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+
+}
+
+.rounded-xl{
+
+    border-radius:20px;
+
+}
+
+.transition{
+
+    transition:all .3s ease;
+
+}

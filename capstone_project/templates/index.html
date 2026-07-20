@@ -1,0 +1,684 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Resume Screening & Job Recommendation</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- CSS -->
+
+    <link rel="stylesheet"
+        href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+
+    <div class="container">
+
+        <a class="navbar-brand fw-bold" href="/">
+
+            <i class="fa-solid fa-brain"></i>
+
+            AI Resume Screener
+
+        </a>
+
+        <button class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse"
+            id="navbarNav">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+
+                    <a class="nav-link active"
+                        href="/">
+
+                        Home
+
+                    </a>
+
+                </li>
+
+                <li class="nav-item">
+
+                    <button
+                        id="themeToggle"
+                        class="btn btn-outline-light ms-3">
+
+                        🌙
+
+                    </button>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+<div class="container">
+
+<div class="row align-items-center">
+
+<div class="col-lg-6">
+
+<h1 class="display-4 fw-bold">
+
+AI Resume Screening
+
+</h1>
+
+<p class="lead mt-3">
+
+Upload or paste your resume and let Artificial Intelligence predict your job category and recommend suitable career opportunities.
+
+</p>
+
+<div class="mt-4">
+
+<span class="badge bg-primary">
+
+Machine Learning
+
+</span>
+
+<span class="badge bg-success">
+
+Flask
+
+</span>
+
+<span class="badge bg-warning text-dark">
+
+NLP
+
+</span>
+
+<span class="badge bg-danger">
+
+AI
+
+</span>
+
+</div>
+
+</div>
+
+<div class="col-lg-6 text-center">
+<!-- 
+<i class="fa-solid fa-file-lines hero-icon"></i> -->
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= FORM ================= -->
+
+<div class="container my-5">
+
+<div class="card glass-card shadow-lg">
+
+<div class="card-body">
+
+<h3 class="text-center mb-4">
+
+Resume Analysis
+
+</h3>
+
+<!-- Flash Message -->
+
+{% with messages = get_flashed_messages() %}
+
+{% if messages %}
+
+<div class="alert alert-danger">
+
+{{ messages[0] }}
+
+</div>
+
+{% endif %}
+
+{% endwith %}
+
+<form
+
+action="/predict"
+
+method="POST"
+
+enctype="multipart/form-data"
+
+id="resumeForm">
+
+<div class="mb-4">
+<!-- 
+<label class="form-label">
+
+Paste Resume
+
+</label> -->
+
+
+
+<div class="mb-4">
+
+                        <label class="form-label fw-bold">
+                            Upload Resume (PDF/TXT/WORD)
+                        </label>
+
+                        <input
+    class="form-control form-control-lg"
+    type="file"
+    name="resume_file"
+    id="resumeUpload"
+    accept=".pdf,.doc,.docx,.txt"
+    required>
+
+                    </div>
+
+<div class="row">
+
+<div class="col-md-4 d-grid">
+
+<button
+
+type="submit"
+
+class="btn btn-primary btn-lg">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+Predict
+
+</button>
+
+</div>
+
+<div class="col-md-4 d-grid">
+
+<button
+
+type="reset"
+
+class="btn btn-warning btn-lg">
+
+<i class="fa-solid fa-trash"></i>
+
+Clear
+
+</button>
+
+</div>
+
+<div class="col-md-4 d-grid">
+
+<label
+for="resumeUpload"
+class="btn btn-success btn-lg">
+
+<i class="fa-solid fa-upload"></i>
+
+Upload PDF / TXT / WORD
+
+</label>
+
+
+<!-- <input
+
+type="file"
+
+name="resume_file"
+
+id="resumeUpload"
+
+accept=".pdf,.txt"
+
+hidden> -->
+
+</div>
+
+</div>
+
+<!-- ================= Loading Spinner ================= -->
+
+<div id="loading" class="loading-overlay" style="display:none;">
+
+    <div class="spinner-border text-light"
+        style="width:4rem;height:4rem;"
+        role="status">
+
+        <span class="visually-hidden">
+            Loading...
+        </span>
+
+    </div>
+
+    <h3 class="mt-4 text-white">
+        Analyzing Resume...
+    </h3>
+
+</div>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= FEATURES ================= -->
+
+<section class="container my-5">
+
+<h2 class="text-center mb-5">
+
+Why Choose Our AI Resume Screener?
+
+</h2>
+
+<div class="row g-4">
+
+<div class="col-md-3">
+
+<div class="feature-card text-center">
+
+<i class="fa-solid fa-robot fa-3x text-primary mb-3"></i>
+
+<h5>
+
+AI Prediction
+
+</h5>
+
+<p>
+
+Predicts the most suitable career category using Machine Learning.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-card text-center">
+
+<i class="fa-solid fa-briefcase fa-3x text-success mb-3"></i>
+
+<h5>
+
+Job Recommendation
+
+</h5>
+
+<p>
+
+Shows matching job roles according to your resume.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-card text-center">
+
+<i class="fa-solid fa-chart-line fa-3x text-warning mb-3"></i>
+
+<h5>
+
+Confidence Score
+
+</h5>
+
+<p>
+
+Displays prediction confidence percentage.
+
+</p>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="feature-card text-center">
+
+<i class="fa-solid fa-file-pdf fa-3x text-danger mb-3"></i>
+
+<h5>
+
+PDF Report
+
+</h5>
+
+<p>
+
+Download your complete screening report instantly.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= Statistics ================= -->
+
+<section class="stats-section">
+
+<div class="container">
+
+<div class="row text-center">
+
+<div class="col-md-3">
+
+<h2>
+
+95%
+
+</h2>
+
+<p>
+
+Prediction Accuracy
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>
+
+500+
+
+</h2>
+
+<p>
+
+Job Roles
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>
+
+AI
+
+</h2>
+
+<p>
+
+Powered Screening
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h2>
+
+24/7
+
+</h2>
+
+<p>
+
+Available Anytime
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+<!-- ================= Footer ================= -->
+
+<footer class="footer mt-5">
+
+<div class="container">
+
+<div class="row">
+
+<div class="col-md-6">
+
+<h4>
+
+AI Resume Screening System
+
+</h4>
+
+<p>
+
+An intelligent resume screening and job recommendation platform powered by Machine Learning and Natural Language Processing.
+
+</p>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>
+
+Technologies
+
+</h5>
+
+<ul>
+
+<li>Python</li>
+
+<li>Flask</li>
+
+<li>Scikit-Learn</li>
+
+<li>Bootstrap 5</li>
+
+</ul>
+
+</div>
+
+<div class="col-md-3">
+
+<h5>
+
+Developed For
+
+</h5>
+
+<p>
+
+Capstone Project
+
+BCA Data Science
+
+</p>
+
+</div>
+
+</div>
+
+<hr>
+
+<div class="text-center">
+
+<p>
+
+© 2026 AI Resume Screening & Job Recommendation System
+
+</p>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- ================= JavaScript ================= -->
+
+<!-- Bootstrap -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- Custom JavaScript -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+
+/* ===========================
+   Loading Spinner
+=========================== */
+
+document.getElementById("resumeForm").addEventListener("submit", function(event){
+
+    let resume = document.getElementById("resume").value.trim();
+
+    let file =
+        document.getElementById("resumeUpload").files.length;
+
+    if(resume === "" && file === 0){
+
+        alert("Please paste your resume or upload a PDF/TXT file.");
+
+        event.preventDefault();
+
+        return;
+
+    }
+
+    document.getElementById("loading").style.display="flex";
+
+});
+
+
+/* ===========================
+   Upload TXT Resume
+=========================== */
+
+document.getElementById("resumeUpload").addEventListener("change", function(){
+
+    const file = this.files[0];
+
+    if(!file){
+
+        return;
+
+    }
+
+    // Read only TXT files
+    if(file.type === "text/plain"){
+
+        const reader = new FileReader();
+
+        reader.onload = function(e){
+
+            document.getElementById("resume").value = e.target.result;
+
+        };
+
+        reader.readAsText(file);
+
+    }
+
+    else{
+
+        // PDF selected
+        document.getElementById("resume").value = "";
+
+    }
+
+});
+
+
+/* ===========================
+   Dark / Light Mode
+=========================== */
+
+const themeBtn=document.getElementById("themeToggle");
+
+themeBtn.onclick=function(){
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+
+        themeBtn.innerHTML="☀️";
+
+    }
+
+    else{
+
+        themeBtn.innerHTML="🌙";
+
+    }
+
+};
+
+</script>
+
+</body>
+
+</html>

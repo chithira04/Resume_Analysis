@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prediction Result</title>
+
+    <!-- Bootstrap -->
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+
+    <link rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- Google Font -->
+
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+          rel="stylesheet">
+
+    <!-- Custom CSS -->
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+
+</head>
+
+<body>
+
+<!-- ================= NAVBAR ================= -->
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow">
+
+<div class="container">
+
+<a class="navbar-brand fw-bold" href="/">
+
+<i class="fa-solid fa-brain"></i>
+
+AI Resume Screener
+
+</a>
+
+<div class="ms-auto">
+
+<button
+id="themeToggle"
+class="btn btn-outline-light">
+
+🌙
+
+</button>
+
+</div>
+
+</div>
+
+</nav>
+
+<!-- ================= RESULT ================= -->
+
+<div class="container my-5">
+
+{% if error %}
+
+<div class="alert alert-danger">
+
+<h4>
+
+{{ error }}
+
+</h4>
+
+</div>
+
+{% else %}
+
+<div class="glass-card p-4 shadow-lg">
+
+<h2 class="text-center mb-4">
+
+Prediction Result
+
+</h2>
+
+<div class="row">
+
+<div class="col-md-6">
+
+<div class="result-card">
+
+<h5>
+
+<i class="fa-solid fa-bullseye text-primary"></i>
+
+Predicted Category
+
+</h5>
+
+<h2 class="mt-3 text-success">
+
+{{ category }}
+
+</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-6">
+
+<div class="result-card">
+
+<h5>
+
+<i class="fa-solid fa-chart-line text-warning"></i>
+
+Prediction Confidence
+
+</h5>
+
+<h2 class="mt-3">
+
+{{ confidence }} %
+
+</h2>
+
+<div class="progress mt-3">
+
+<div
+
+class="progress-bar bg-success"
+
+role="progressbar"
+
+style="width: {{ confidence }}%;">
+
+{{ confidence }}%
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<hr class="my-5">
+
+<h3>
+
+<i class="fa-solid fa-briefcase text-primary"></i>
+
+Recommended Jobs
+
+</h3>
+
+<div class="row mt-4">
+
+{% for job in jobs %}
+
+<div class="col-md-4 mb-4">
+
+<div class="job-card">
+
+<i class="fa-solid fa-laptop-code fa-2x text-primary mb-3"></i>
+
+<h5>
+
+{{ job }}
+
+</h5>
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- ================= SKILLS ================= -->
+
+<h3 class="mt-5">
+
+<i class="fa-solid fa-lightbulb text-warning"></i>
+
+Required Skills
+
+</h3>
+
+<div class="row mt-4">
+
+{% for skill in skills %}
+
+<div class="col-md-3 mb-3">
+
+<div class="skill-card">
+
+<i class="fa-solid fa-check-circle text-success"></i>
+
+{{ skill }}
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+<!-- ================= EDUCATION ================= -->
+
+{% if education %}
+
+<h3 class="mt-5">
+
+<i class="fa-solid fa-graduation-cap text-primary"></i>
+
+Education Requirement
+
+</h3>
+
+<div class="row mt-4">
+
+{% for edu in education %}
+
+<div class="col-md-4 mb-3">
+
+<div class="info-card">
+
+<i class="fa-solid fa-school text-primary"></i>
+
+{{ edu }}
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+<!-- ================= SALARY ================= -->
+
+{% if salary %}
+
+<h3 class="mt-5">
+
+<i class="fa-solid fa-indian-rupee-sign text-success"></i>
+
+Salary Range
+
+</h3>
+
+<div class="row mt-4">
+
+{% for item in salary %}
+
+<div class="col-md-4 mb-3">
+
+<div class="info-card">
+
+<i class="fa-solid fa-money-bill-wave text-success"></i>
+
+{{ item }}
+
+</div>
+
+</div>
+
+{% endfor %}
+
+</div>
+
+{% endif %}
+
+<!-- ================= ACTION BUTTONS ================= -->
+
+<div class="text-center mt-5">
+
+<button
+
+class="btn btn-primary btn-lg m-2"
+
+onclick="copyResult()">
+
+<i class="fa-solid fa-copy"></i>
+
+Copy Result
+
+</button>
+
+<a
+
+href="/download_pdf"
+
+class="btn btn-success btn-lg m-2">
+
+<i class="fa-solid fa-file-pdf"></i>
+
+Download PDF
+
+</a>
+
+<a
+
+href="/reset"
+
+class="btn btn-warning btn-lg m-2">
+
+<i class="fa-solid fa-rotate-left"></i>
+
+Analyze Another Resume
+
+</a>
+
+</div>
+
+</div>
+
+{% endif %}
+
+</div>
+
+<!-- ================= Footer ================= -->
+
+<footer class="footer mt-5">
+
+<div class="container">
+
+<hr>
+
+<div class="text-center">
+
+<p class="mb-0">
+
+© 2026 AI Resume Screening & Job Recommendation System
+
+</p>
+
+</div>
+
+</div>
+
+</footer>
+
+<!-- ================= Bootstrap ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- ================= Custom JS ================= -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+<script>
+
+/* ===========================
+   Dark / Light Mode
+=========================== */
+
+const themeBtn = document.getElementById("themeToggle");
+
+themeBtn.onclick = function(){
+
+    document.body.classList.toggle("dark-mode");
+
+    if(document.body.classList.contains("dark-mode")){
+
+        themeBtn.innerHTML = "☀️";
+
+    }
+
+    else{
+
+        themeBtn.innerHTML = "🌙";
+
+    }
+
+};
+
+
+/* ===========================
+   Copy Result
+=========================== */
+
+function copyResult(){
+
+    let text = "";
+
+    text += "========== AI RESUME SCREENING RESULT ==========\n\n";
+
+    text += "Predicted Category : {{ category }}\n";
+
+    text += "Confidence : {{ confidence }}%\n\n";
+
+    text += "Recommended Jobs\n";
+
+    {% for job in jobs %}
+
+    text += "- {{ job }}\n";
+
+    {% endfor %}
+
+    text += "\nRequired Skills\n";
+
+    {% for skill in skills %}
+
+    text += "- {{ skill }}\n";
+
+    {% endfor %}
+
+    {% if education %}
+
+    text += "\nEducation Requirement\n";
+
+    {% for edu in education %}
+
+    text += "- {{ edu }}\n";
+
+    {% endfor %}
+
+    {% endif %}
+
+    {% if salary %}
+
+    text += "\nSalary Range\n";
+
+    {% for item in salary %}
+
+    text += "- {{ item }}\n";
+
+    {% endfor %}
+
+    {% endif %}
+
+    navigator.clipboard.writeText(text);
+
+    alert("Result copied successfully!");
+
+}
+
+</script>
+
+</body>
+
+</html>
